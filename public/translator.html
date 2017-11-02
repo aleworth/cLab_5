@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>Translator</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+</head>
+<h3>English to Spanish Translator</h3><br>
+<body>
+<form in-line>
+From English: <input type="text" id="wordfield" value="">
+</form>
+<form in-line>
+To Spanish: <span id="translation">Empty</span>
+</form>
+<script>
+$("#wordfield").keyup(function() {
+  var url = "translate?q="+$("#wordfield").val();
+  $.getJSON(url,function(data) {
+    var everything;
+    everything = "<ul>";
+    $.each(data.text, function(i,item) {
+      everything += "<li> "+data.text[i]+"</li>";
+    });
+    everything += "</ul>";
+    $("#translation").html(everything);
+  });
+});
+</script>
+</body>
+</html>
